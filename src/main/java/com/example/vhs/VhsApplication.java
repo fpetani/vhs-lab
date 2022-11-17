@@ -1,7 +1,10 @@
 package com.example.vhs;
 
 import com.example.vhs.entity.Rental;
+import com.example.vhs.entity.User;
 import com.example.vhs.entity.VHS;
+import com.example.vhs.repository.RentalRepository;
+import com.example.vhs.repository.UserRepository;
 import com.example.vhs.repository.VHSRepository;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,10 @@ import java.util.List;
 public class VhsApplication implements CommandLineRunner {
 	@Autowired
 	VHSRepository repo;
+	@Autowired
+	RentalRepository rentalRepo;
+	@Autowired
+	UserRepository userRepo;
 
 
 	public static void main(String[] args) {
@@ -31,14 +38,17 @@ public class VhsApplication implements CommandLineRunner {
 				.withType(VHS.class).build().parse();
 
 		repo.saveAll(vhs);
-
-        /*Rental testRental;
-
-        LocalDate from = LocalDate.now();
-        LocalDate to = from.plusDays(10);
-
-        long result = ChronoUnit.DAYS.between(to, from);
-        System.out.println(result);*/
-
+		User testUser = new User();
+		testUser.setUsername("test user");
+		testUser.setPasswordHash("passHash");
+		userRepo.save(testUser);
+		VHS vhsTest;
+		vhsTest = repo.findById(Long.valueOf(1)).orElse(new VHS());
+		vhsTest.setRented(true);
+		Rental testRental = new Rental();
+		testRental.setVhs(vhsTest);
+		testRental.setId(Long.valueOf(1));
+		testRental.setUser(testUser);
+		rentalRepo.save(testRental);
 	}
 }

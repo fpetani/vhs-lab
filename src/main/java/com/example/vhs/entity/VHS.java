@@ -41,6 +41,10 @@ public class VHS {
     @ColumnDefault("false")
     private boolean isRented;
 
+    //For simplicity every fee per day will be the same.
+    @Column(nullable = false)
+    private double feePerDay = 0.5;
+
     public VHS() {
     }
 

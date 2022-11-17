@@ -10,6 +10,10 @@ public class User {
     private Long Id;
     private String username;
     private String passwordHash;
+
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
