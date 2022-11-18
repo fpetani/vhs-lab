@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vhs")
-@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 public class VHSController {
 
     private final VHSService vhsService;

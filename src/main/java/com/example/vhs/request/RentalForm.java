@@ -12,12 +12,11 @@ public class RentalForm {
     private Long userId;
 
     private Long vhsId;
-    //I want date in yyyy-mm-dd string format
     @NotEmpty
-    @Size(max = 10, min = 10)
+    @Size(max = 10, min = 10, message = "This application supports dates in yyyy-mm-dd string format")
     private String rentalDate;
 
-    @Min(value = 2)
-    @Max(value = 30)
+    @Min(value = 2, message = "You can not rent vhs for less than 2 days")
+    @Max(value = 30, message = "You can not rent vhs for more than 30 days")
     private Integer rentalDuration;
 }
