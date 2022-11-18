@@ -3,6 +3,7 @@ package com.example.vhs.service;
 import com.example.vhs.entity.Rental;
 import com.example.vhs.entity.User;
 import com.example.vhs.entity.VHS;
+import com.example.vhs.exception.ApiRequestException;
 import com.example.vhs.exception.EntityDoesNotExistException;
 import com.example.vhs.repository.RentalRepository;
 import com.example.vhs.repository.UserRepository;
@@ -44,8 +45,7 @@ public class RentalService {
         //Setting VHS
         VHS vhs = vhsRepository.findById(form.getVhsId()).orElseThrow(()->new EntityDoesNotExistException("No VHS with given id found"));
         if(vhs.isRented()){
-            //TODO handle exception, for now just return empty Rental
-            return new Rental();
+            throw new ApiRequestException("VHS already rented by another user");
         }
         vhs.setRented(true);
         vhsRepository.save(vhs);
@@ -66,7 +66,7 @@ public class RentalService {
 
         return rentalRepository.save(newRental);
     }
-
+    /*Could use some code refactoring*/
     public Rental updateRental(Long rentalId, ReturnForm form){
         Rental rentalUpdate = rentalRepository.findById(rentalId).orElseThrow(()->new EntityDoesNotExistException("No rental with given id found"));
         LocalDate returnDate = LocalDate.parse(form.getReturnDate());
@@ -83,8 +83,7 @@ public class RentalService {
 
         //each day that user is late with returning costs him 0.5 fee per day defined in VHS entity
         if(daysLate > 0){
-            double feeSum = daysLate*vhs.getFeePerDay();
-            rentalUpdate.setLateFee(feeSum);
+            rentalUpdate.setLateFee(daysLate*vhs.getFeePerDay());
         }else{
             rentalUpdate.setLateFee(0.0);
         }

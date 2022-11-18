@@ -1,13 +1,12 @@
 package com.example.vhs.controller;
 
 import com.example.vhs.entity.VHS;
+import com.example.vhs.exception.ApiRequestException;
 import com.example.vhs.service.VHSService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vhs")
+@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 public class VHSController {
 
     private final VHSService vhsService;
@@ -39,7 +39,7 @@ public class VHSController {
     }
 
     @GetMapping("/year/{year}")
-    public ResponseEntity<List<VHS>> findByYear(@PathVariable @NotBlank @Min(1900) @Max(2023) Integer year){
+    public ResponseEntity<List<VHS>> findByYear(@Valid @PathVariable @NotBlank @Min(1900) @Max(2023) Integer year){
         return ResponseEntity.ok(vhsService.filterByYear(year));
     }
 

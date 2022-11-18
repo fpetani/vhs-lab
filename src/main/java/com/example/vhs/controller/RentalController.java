@@ -4,17 +4,20 @@ import com.example.vhs.entity.Rental;
 import com.example.vhs.request.RentalForm;
 import com.example.vhs.request.ReturnForm;
 import com.example.vhs.service.RentalService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/rental")
+//@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 public class RentalController {
-    private RentalService rentalService;
+    private final RentalService rentalService;
+
+    @Value("${my.greeting: default greeting}")
+    private String greeting;
 
     public RentalController(RentalService rentalService){
         this.rentalService = rentalService;
@@ -22,6 +25,7 @@ public class RentalController {
 
     @GetMapping("")
     public ResponseEntity getAllRental(){
+        System.out.println(greeting);
         return ResponseEntity.ok(rentalService.findAllRental());
     }
 
@@ -33,10 +37,6 @@ public class RentalController {
     @PostMapping
     public ResponseEntity rentVHS(@Valid @RequestBody RentalForm form){
         Rental rental = rentalService.createRental(form);
-        //TODO handle exception if vhs is already rented
-        if(rental.getRentalDate().equals(null)){
-            //return ResponseEntityExceptionHandler
-        }
         return ResponseEntity.ok(rental);
     }
 
@@ -50,6 +50,8 @@ public class RentalController {
     public ResponseEntity deleteRental(@PathVariable Long id){
         return ResponseEntity.ok(rentalService.deleteRental(id));
     }
+
+
 
 
 }

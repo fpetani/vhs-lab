@@ -3,25 +3,20 @@ package com.example.vhs.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
 public class RentalForm {
-    @NotBlank
+
     private Long userId;
 
-    @NotBlank
     private Long vhsId;
-
-    @NotBlank
-    @Size(max = 10)
+    //I want date in yyyy-mm-dd string format
+    @NotEmpty
+    @Size(max = 10, min = 10)
     private String rentalDate;
 
-    @NotBlank
     @Min(value = 2)
     @Max(value = 30)
     private Integer rentalDuration;
