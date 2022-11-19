@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "df54bcc4-eab1-452d-a473-f2ef638d1e2f",
+		"name": "vhs-lab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15319964"
+	},
+	"item": [
+		{
+			"name": "VHS List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/vhs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"vhs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get VHS by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/vhs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"vhs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bad request for VHS by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/vhs/3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"vhs",
+						"3000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter VHS list by year",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/vhs/year/2000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"vhs",
+						"year",
+						"2000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter VHs by genre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/vhs/genre/Dra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"vhs",
+						"genre",
+						"Dra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unauthorized rental request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/rental",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with ROLE_ADMIN user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Direktor\",\r\n    \"password\":\"DirektorSifra\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VHS Rental",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vhsId\": 100,\r\n    \"rentalDate\": \"2022-01-01\",\r\n    \"rentalDuration\": 29\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/rental",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return VHS late to demonstrate late fees",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"returnDate\":\"2022-02-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/rental/298",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental",
+						"298"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all rentals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/rental/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rent VHS with invalid parameters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vhsId\": 100,\r\n    \"rentalDate\": \"2022-021-01\",\r\n    \"rentalDuration\": 35\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rent VHS that doesn't exist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vhsId\": 300,\r\n    \"rentalDate\": \"2022-01-01\",\r\n    \"rentalDuration\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/rental",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete rental",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/rental/298",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental",
+						"298"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with ROLE_USER user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Stipe\",\r\n    \"password\":\"StipeSifra\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROLE_USER Unauthorized for /rental paths",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/rental",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"rental"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout of ROLE_USER",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

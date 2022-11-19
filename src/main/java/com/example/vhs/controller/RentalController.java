@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -41,6 +44,8 @@ public class RentalController {
     @PostMapping
     public ResponseEntity<Rental> rentVHS(@Valid @RequestBody RentalForm form){
         log.debug("Request POST api/rental with body:{}", form);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        form.setUsername(auth.getName());
         Rental rental = rentalService.createRental(form);
         ResponseEntity<Rental> responseEntity = ResponseEntity.ok(rental);
         log.debug("Response {}", responseEntity);

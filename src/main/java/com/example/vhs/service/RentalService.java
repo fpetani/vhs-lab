@@ -58,7 +58,7 @@ public class RentalService {
 
         newRental.setRentalDuration(form.getRentalDuration());
         //Setting user
-        User user = userRepository.findById(form.getUserId()).orElseThrow(()->new EntityDoesNotExistException("No user with given id found"));
+        User user = userRepository.findByUsername(form.getUsername()).orElseThrow(()->new EntityDoesNotExistException("No user with given username found"));
         newRental.setUser(user);
 
         //Setting rentalDate

@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 @Setter
 public class RentalForm {
 
-    private Long userId;
+    private String username;
 
     private Long vhsId;
     @NotEmpty
