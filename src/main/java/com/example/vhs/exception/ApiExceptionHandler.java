@@ -1,5 +1,7 @@
 package com.example.vhs.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -16,6 +18,8 @@ import java.util.Map;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
+    Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);
+
     @ExceptionHandler(value={ApiRequestException.class})
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e){
         ApiException apiException = new ApiException(
@@ -23,6 +27,8 @@ public class ApiExceptionHandler {
                 HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
+
+        log.error(e.getMessage());
 
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
@@ -36,6 +42,8 @@ public class ApiExceptionHandler {
                 HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
+
+        log.error(e.getMessage());
 
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }

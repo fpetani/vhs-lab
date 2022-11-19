@@ -7,6 +7,8 @@ import com.example.vhs.repository.RentalRepository;
 import com.example.vhs.repository.UserRepository;
 import com.example.vhs.repository.VHSRepository;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +25,8 @@ import java.util.List;
 
 @SpringBootApplication
 public class VhsApplication implements CommandLineRunner {
+
+	Logger log = LoggerFactory.getLogger(VhsApplication.class);
 	@Autowired
 	VHSRepository repo;
 	@Autowired
@@ -36,7 +40,6 @@ public class VhsApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VhsApplication.class, args);
-
 	}
 
 	@Override

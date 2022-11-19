@@ -10,6 +10,8 @@ import com.example.vhs.repository.UserRepository;
 import com.example.vhs.repository.VHSRepository;
 import com.example.vhs.request.RentalForm;
 import com.example.vhs.request.ReturnForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.List;
 @Service
 public class RentalService {
     private final RentalRepository rentalRepository;
+
+    private Logger log = LoggerFactory.getLogger(RentalService.class);
     private final UserRepository userRepository;
     private final VHSRepository vhsRepository;
 

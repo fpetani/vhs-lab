@@ -15,6 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 public class VHS {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
@@ -59,5 +60,19 @@ public class VHS {
     @Override
     public int hashCode() {
         return Objects.hash(Id, genre, title, year);
+    }
+
+    @Override
+    public String toString() {
+        return "VHS{" +
+                "Id=" + Id +
+                ", budget=" + budget +
+                ", genre='" + genre + '\'' +
+                ", title='" + title + '\'' +
+                ", length=" + length +
+                ", year=" + year +
+                ", isRented=" + isRented +
+                ", feePerDay=" + feePerDay +
+                '}';
     }
 }

@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.thingsboard:springfox-boot-starter:3.0.4'
 	testImplementation 'junit:junit:4.13.1'
 	implementation 'com.h2database:h2:2.1.214'
+	testImplementation 'ch.qos.logback:logback-classic:0.9.26'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
