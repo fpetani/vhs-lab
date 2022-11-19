@@ -2,7 +2,6 @@ package com.example.vhs.controller;
 
 import com.example.vhs.entity.VHS;
 import com.example.vhs.service.VHSService;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +18,16 @@ public class VHSController {
 
     private final VHSService vhsService;
 
-    private Logger log = LoggerFactory.getLogger(VHSController.class);
+    private final Logger log = LoggerFactory.getLogger(VHSController.class);
 
     public VHSController(VHSService vhsService){
         this.vhsService = vhsService;
     }
 
     @GetMapping("")
-    public ResponseEntity getAllVHS(){
+    public ResponseEntity<List<VHS>> getAllVHS(){
         log.debug("Request GET api/vhs");
-        ResponseEntity responseEntity = ResponseEntity.ok(this.vhsService.findAll());
+        ResponseEntity<List<VHS>> responseEntity = ResponseEntity.ok(this.vhsService.findAll());
         log.debug("Response {}", responseEntity);
         return responseEntity;
     }
@@ -36,7 +35,7 @@ public class VHSController {
     @GetMapping("/{id}")
     public ResponseEntity<VHS> findById(@PathVariable Long id){
         log.debug("Request GET api/vhs/{}", id);
-        ResponseEntity responseEntity = ResponseEntity.ok(vhsService.findById(id));
+        ResponseEntity<VHS> responseEntity = ResponseEntity.ok(vhsService.findById(id));
         log.debug("Response {}", responseEntity);
         return responseEntity;
     }
@@ -44,7 +43,7 @@ public class VHSController {
     @GetMapping("/title/{title}")
     public ResponseEntity<List<VHS>> findByTitle(@PathVariable @NotBlank String title){
         log.debug("Request GET api/vhs/title/{}", title);
-        ResponseEntity responseEntity = ResponseEntity.ok(vhsService.filterByTitle(title));
+        ResponseEntity<List<VHS>> responseEntity = ResponseEntity.ok(vhsService.filterByTitle(title));
         log.debug("Response {}", responseEntity);
         return responseEntity;
     }
@@ -52,7 +51,7 @@ public class VHSController {
     @GetMapping("/year/{year}")
     public ResponseEntity<List<VHS>> findByYear(@Valid @PathVariable @Min(1900) @Max(2023) Integer year){
         log.debug("Request GET api/vhs/year/{}", year);
-        ResponseEntity responseEntity = ResponseEntity.ok(vhsService.filterByYear(year));
+        ResponseEntity<List<VHS>> responseEntity = ResponseEntity.ok(vhsService.filterByYear(year));
         log.debug("Response {}", responseEntity);
         return responseEntity;
     }
@@ -60,7 +59,7 @@ public class VHSController {
     @GetMapping("/genre/{genre}")
     public ResponseEntity<List<VHS>> findByGenre(@PathVariable @NotBlank String genre){
         log.debug("Request GET api/vhs/genre/{}", genre);
-        ResponseEntity responseEntity = ResponseEntity.ok(vhsService.filterByGenre(genre));
+        ResponseEntity<List<VHS>> responseEntity = ResponseEntity.ok(vhsService.filterByGenre(genre));
         log.debug("Response {}", responseEntity);
         return responseEntity;
     }

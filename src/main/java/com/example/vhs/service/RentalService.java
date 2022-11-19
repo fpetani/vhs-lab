@@ -23,7 +23,7 @@ import java.util.List;
 public class RentalService {
     private final RentalRepository rentalRepository;
 
-    private Logger log = LoggerFactory.getLogger(RentalService.class);
+    private final Logger log = LoggerFactory.getLogger(RentalService.class);
     private final UserRepository userRepository;
     private final VHSRepository vhsRepository;
 
@@ -49,6 +49,7 @@ public class RentalService {
         //Setting VHS
         VHS vhs = vhsRepository.findById(form.getVhsId()).orElseThrow(()->new EntityDoesNotExistException("No VHS with given id found"));
         if(vhs.isRented()){
+            log.error("VHS already rented by another user");
             throw new ApiRequestException("VHS already rented by another user");
         }
         vhs.setRented(true);

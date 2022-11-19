@@ -1,39 +1,30 @@
 package com.example.vhs;
 
-import com.example.vhs.entity.Rental;
 import com.example.vhs.entity.User;
 import com.example.vhs.entity.VHS;
 import com.example.vhs.repository.RentalRepository;
 import com.example.vhs.repository.UserRepository;
 import com.example.vhs.repository.VHSRepository;
 import com.opencsv.bean.CsvToBeanBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.FileReader;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 public class VhsApplication implements CommandLineRunner {
 
-	Logger log = LoggerFactory.getLogger(VhsApplication.class);
 	@Autowired
 	VHSRepository repo;
 	@Autowired
 	RentalRepository rentalRepo;
 	@Autowired
 	UserRepository userRepo;
-
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
