@@ -395,8 +395,21 @@
 		{
 			"name": "Logout of ROLE_USER",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4080/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
 			},
 			"response": []
 		}
