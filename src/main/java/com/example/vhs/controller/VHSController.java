@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vhs")
-//@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 public class VHSController {
 
     private final VHSService vhsService;
@@ -39,7 +38,7 @@ public class VHSController {
     }
 
     @GetMapping("/year/{year}")
-    public ResponseEntity<List<VHS>> findByYear(@Valid @PathVariable @NotBlank @Min(1900) @Max(2023) Integer year){
+    public ResponseEntity<List<VHS>> findByYear(@Valid @PathVariable @Min(1900) @Max(2023) Integer year){
         return ResponseEntity.ok(vhsService.filterByYear(year));
     }
 

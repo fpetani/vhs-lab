@@ -27,6 +27,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.hibernate.validator:hibernate-validator:6.2.1.Final'
 	implementation 'org.thingsboard:springfox-boot-starter:3.0.4'
+	testImplementation 'junit:junit:4.13.1'
+	implementation 'com.h2database:h2:2.1.214'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
